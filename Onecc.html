@@ -1,0 +1,583 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="en"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;title&gt;Call List Manager&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;body class="bg-gray-50 min-h-screen"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="container mx-auto px-4 py-6"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;header class="mb-8"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="flex justify-between items-center"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;h1 class="text-3xl font-bold text-blue-700"&gt;Call List Manager&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="text-sm text-gray-500"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;span id="current-date"&gt;&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;p class="text-gray-600 mt-2"&gt;Upload and manage call lists with privacy protection&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/header&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="bg-white rounded-lg shadow-md p-6 mb-8"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-xl font-semibold mb-4"&gt;Upload Call List&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;p class="text-sm text-gray-600 mb-4"&gt;Upload a CSV file with your call list. The file should include name and phone number columns at minimum.&lt;/p&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="flex items-center space-x-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="flex-1"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="relative border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-blue-500" id="file-drop-area"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;input type="file" id="file-upload" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept=".csv"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;i class="fas fa-file-upload text-gray-400 text-3xl mb-2"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;p class="text-gray-500"&gt;Drop your CSV file here or click to browse&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="w-1/3"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="mb-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;label class="block text-sm font-medium text-gray-700 mb-1"&gt;Name Column&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;input type="text" id="name-column" class="w-full p-2 border rounded-md" placeholder="e.g. name, full_name" value="name"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="mb-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;label class="block text-sm font-medium text-gray-700 mb-1"&gt;Phone Column&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;input type="text" id="phone-column" class="w-full p-2 border rounded-md" placeholder="e.g. phone, phone_number" value="phone"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;button id="process-file" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 disabled:bg-gray-300"&gt;Process File&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div id="file-info" class="mt-4 text-sm text-gray-600 hidden"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="flex items-center space-x-2"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;i class="fas fa-file-alt"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;span id="filename"&gt;&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;span id="row-count" class="ml-auto"&gt;&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="bg-white rounded-lg shadow-md p-6 mb-8"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="flex justify-between items-center mb-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-xl font-semibold"&gt;Call List&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="flex space-x-2"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="relative"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;input type="text" id="search-input" class="pl-8 pr-2 py-1 border rounded-md" placeholder="Search names..."&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;i class="fas fa-search absolute left-3 top-2.5 text-gray-400"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;select id="sort-select" class="border rounded-md px-2 py-1"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;option value="name-asc"&gt;Name (A-Z)&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;option value="name-desc"&gt;Name (Z-A)&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;option value="recent"&gt;Recently Called&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;option value="not-called"&gt;Not Yet Called&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/select&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div id="call-list-empty" class="text-center py-8 text-gray-500"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;i class="fas fa-phone-slash text-4xl mb-2"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;p&gt;No call list loaded. Please upload a CSV file above.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div id="call-list-container" class="hidden"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="overflow-hidden"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;table class="min-w-full divide-y divide-gray-200"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;thead class="bg-gray-50"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;tr&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"&gt;Name&lt;/th&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"&gt;Status&lt;/th&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"&gt;Last Called&lt;/th&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"&gt;Action&lt;/th&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/tr&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/thead&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;tbody id="call-list-body" class="bg-white divide-y divide-gray-200"&gt;&lt;/tbody&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/table&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="mt-4 flex justify-between items-center"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="text-sm text-gray-500"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>Showing &lt;span id="showing-count"&gt;0&lt;/span&gt; of &lt;span id="total-count"&gt;0&lt;/span&gt; contacts</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div class="flex space-x-2"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;button id="prev-page" class="px-3 py-1 border rounded-md disabled:opacity-50"&gt;Previous&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;span class="px-3 py-1"&gt;Page &lt;span id="current-page"&gt;1&lt;/span&gt;&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;button id="next-page" class="px-3 py-1 border rounded-md disabled:opacity-50"&gt;Next&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="bg-white rounded-lg shadow-md p-6 mb-8"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-xl font-semibold mb-4"&gt;Call History &amp; Report&lt;/h2&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="bg-blue-50 rounded-lg p-4 text-center"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-lg font-medium text-blue-700"&gt;Total Contacts&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;p id="stat-total-contacts" class="text-3xl font-bold text-blue-800"&gt;0&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="bg-green-50 rounded-lg p-4 text-center"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-lg font-medium text-green-700"&gt;Calls Made&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;p id="stat-calls-made" class="text-3xl font-bold text-green-800"&gt;0&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="bg-yellow-50 rounded-lg p-4 text-center"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-lg font-medium text-yellow-700"&gt;Call Completion&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;p id="stat-completion" class="text-3xl font-bold text-yellow-800"&gt;0%&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="mb-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;h3 class="text-lg font-medium mb-2"&gt;Recent Call Activity&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="overflow-hidden"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;table class="min-w-full divide-y divide-gray-200"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;thead class="bg-gray-50"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;tr&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"&gt;Name&lt;/th&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"&gt;Date &amp; Time&lt;/th&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"&gt;Notes&lt;/th&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/tr&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/thead&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;tbody id="call-history-body" class="bg-white divide-y divide-gray-200"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;tr&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;td colspan="3" class="px-6 py-4 text-center text-gray-500"&gt;No call history yet&lt;/td&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/tr&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/tbody&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/table&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="flex justify-end"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;button id="export-report" class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 flex items-center"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;i class="fas fa-download mr-2"&gt;&lt;/i&gt; Export Report</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- Call Modal --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="call-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="bg-white rounded-lg shadow-xl p-6 max-w-md w-full"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="flex justify-between items-center mb-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;h3 class="text-xl font-semibold"&gt;Calling Contact&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;button id="close-call-modal" class="text-gray-400 hover:text-gray-600"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;i class="fas fa-times"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="text-center mb-6"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;i class="fas fa-user text-blue-600 text-3xl"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;h4 id="calling-name" class="text-xl font-medium"&gt;John Doe&lt;/h4&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;p class="text-gray-500"&gt;Initiating call...&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="flex justify-center space-x-4 mb-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;button id="end-call" class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;i class="fas fa-phone-slash"&gt;&lt;/i&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="mt-4"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;Call Notes&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;textarea id="call-notes" class="w-full border rounded-md p-2" rows="3" placeholder="Add notes about this call"&gt;&lt;/textarea&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="mt-4 flex justify-end"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;button id="save-call" class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>End Call &amp; Save Notes</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.addEventListener('DOMContentLoaded', function() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Initialize current date</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const currentDate = new Date();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('current-date').textContent = currentDate.toLocaleDateString('en-US', {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>weekday: 'long',<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>year: 'numeric',<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>month: 'long',<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>day: 'numeric'<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Global variables</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>let callListData = [];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>let filteredData = [];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>let currentPage = 1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const rowsPerPage = 10;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>let currentContact = null;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Initialize call history from localStorage</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>let callHistory = JSON.parse(localStorage.getItem('callHistory')) || [];</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// File upload handling</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const fileUpload = document.getElementById('file-upload');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const processFileBtn = document.getElementById('process-file');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const fileInfo = document.getElementById('file-info');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const filename = document.getElementById('filename');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const rowCount = document.getElementById('row-count');</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>fileUpload.addEventListener('change', function(e) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (e.target.files.length &gt; 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>const file = e.target.files[0];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>filename.textContent = file.name;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>fileInfo.classList.remove('hidden');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>processFileBtn.disabled = false;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// CSV parsing function</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>processFileBtn.addEventListener('click', function() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const file = fileUpload.files[0];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (!file) return;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const reader = new FileReader();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>reader.onload = function(e) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>try {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>const csvData = e.target.result;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>const nameColumn = document.getElementById('name-column').value || 'name';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>const phoneColumn = document.getElementById('phone-column').value || 'phone';</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>// Parse CSV</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>const lines = csvData.split('\n');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>const headers = lines[0].split(',').map(h =&gt; h.trim());</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>const nameIndex = headers.findIndex(h =&gt; h.toLowerCase() === nameColumn.toLowerCase());</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>const phoneIndex = headers.findIndex(h =&gt; h.toLowerCase() === phoneColumn.toLowerCase());</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>if (nameIndex === -1 || phoneIndex === -1) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>alert(`Column name "${nameColumn}" or "${phoneColumn}" not found in CSV headers.`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>callListData = [];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>for (let i = 1; i &lt; lines.length; i++) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>if (!lines[i].trim()) continue;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>const columns = lines[i].split(',').map(col =&gt; col.trim());</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>const contact = {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>id: `contact-${i}`,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>name: columns[nameIndex],</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>phone: columns[phoneIndex],</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>callStatus: 'Not Called',</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>lastCalled: null</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>};</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>// Add additional columns as hidden data</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>headers.forEach((header, idx) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>if (idx !== nameIndex &amp;&amp; idx !== phoneIndex) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>contact[header] = columns[idx];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>// Check call history for this contact</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>const historyEntry = callHistory.find(h =&gt; h.phone === contact.phone);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>if (historyEntry) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>contact.callStatus = 'Called';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>contact.lastCalled = historyEntry.timestamp;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>contact.notes = historyEntry.notes;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>callListData.push(contact);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>rowCount.textContent = `${callListData.length} contacts`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>document.getElementById('stat-total-contacts').textContent = callListData.length;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>// Show the call list</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>document.getElementById('call-list-empty').classList.add('hidden');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>document.getElementById('call-list-container').classList.remove('hidden');</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>// Update the display</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>filteredData = [...callListData];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>renderCallList();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>updateCallStats();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>renderCallHistory();</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>} catch (error) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>console.error('Error parsing CSV:', error);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>alert('Error parsing CSV file. Please check the format and try again.');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>};</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>reader.readAsText(file);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Call list rendering</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>function renderCallList() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const tableBody = document.getElementById('call-list-body');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>tableBody.innerHTML = '';</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const startIndex = (currentPage - 1) * rowsPerPage;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const endIndex = Math.min(startIndex + rowsPerPage, filteredData.length);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const pageData = filteredData.slice(startIndex, endIndex);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (pageData.length === 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>const row = document.createElement('tr');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>row.innerHTML = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;td colspan="4" class="px-6 py-4 text-center text-gray-500"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>No matching contacts found</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/td&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>tableBody.appendChild(row);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>pageData.forEach(contact =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>const row = document.createElement('tr');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>row.className = 'hover:bg-gray-50';</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>const lastCalledText = contact.lastCalled ?<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>new Date(contact.lastCalled).toLocaleString('en-US', {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>month: 'short',<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>day: 'numeric',</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>year: 'numeric',</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>hour: 'numeric',</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>minute: '2-digit'</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>}) : 'Never';</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>const statusColor = contact.callStatus === 'Called' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800';</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>row.innerHTML = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;td class="px-6 py-4 whitespace-nowrap"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div class="text-sm font-medium text-gray-900"&gt;${contact.name}&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/td&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;td class="px-6 py-4 whitespace-nowrap"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${statusColor}"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>${contact.callStatus}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/td&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>${lastCalledText}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/td&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;button class="text-blue-600 hover:text-blue-900 call-button" data-id="${contact.id}"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;i class="fas fa-phone"&gt;&lt;/i&gt; Call</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/td&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>`;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>tableBody.appendChild(row);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// Update pagination</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.getElementById('showing-count').textContent = pageData.length;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.getElementById('total-count').textContent = filteredData.length;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.getElementById('current-page').textContent = currentPage;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.getElementById('prev-page').disabled = currentPage === 1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.getElementById('next-page').disabled = endIndex &gt;= filteredData.length;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// Add event listeners to call buttons</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.querySelectorAll('.call-button').forEach(button =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>button.addEventListener('click', function() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>const contactId = this.getAttribute('data-id');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>const contact = callListData.find(c =&gt; c.id === contactId);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>if (contact) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>initiateCall(contact);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Call initiation</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>function initiateCall(contact) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>currentContact = contact;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.getElementById('calling-name').textContent = contact.name;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.getElementById('call-notes').value = contact.notes || '';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.getElementById('call-modal').classList.remove('hidden');</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// In a real app, this would integrate with a telephony API</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>console.log(`Initiating call to ${contact.name} at ${contact.phone}`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Call modal handling</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('close-call-modal').addEventListener('click', function() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.getElementById('call-modal').classList.add('hidden');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>currentContact = null;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('end-call').addEventListener('click', function() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>endCallAndSave();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('save-call').addEventListener('click', function() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>endCallAndSave();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>function endCallAndSave() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (!currentContact) return;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const notes = document.getElementById('call-notes').value;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const timestamp = new Date().toISOString();</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// Update contact status</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const contact = callListData.find(c =&gt; c.id === currentContact.id);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (contact) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>contact.callStatus = 'Called';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>contact.lastCalled = timestamp;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>contact.notes = notes;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// Add to call history</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const historyEntry = {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>id: `history-${Date.now()}`,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>name: currentContact.name,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>phone: currentContact.phone,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>timestamp: timestamp,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>notes: notes</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>};</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// Remove any previous entries with the same phone number</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>callHistory = callHistory.filter(h =&gt; h.phone !== currentContact.phone);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// Add new entry at the beginning</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>callHistory.unshift(historyEntry);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// Save to localStorage</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>localStorage.setItem('callHistory', JSON.stringify(callHistory));</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// Update UI</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.getElementById('call-modal').classList.add('hidden');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>renderCallList();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>updateCallStats();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>renderCallHistory();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>currentContact = null;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Search and filtering</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('search-input').addEventListener('input', function() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const searchTerm = this.value.toLowerCase();</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (searchTerm.trim() === '') {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>filteredData = [...callListData];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>filteredData = callListData.filter(contact =&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>contact.name.toLowerCase().includes(searchTerm)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>currentPage = 1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>renderCallList();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Sorting</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('sort-select').addEventListener('change', function() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const sortOption = this.value;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>switch (sortOption) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>case 'name-asc':</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>filteredData.sort((a, b) =&gt; a.name.localeCompare(b.name));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>break;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>case 'name-desc':</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>filteredData.sort((a, b) =&gt; b.name.localeCompare(a.name));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>break;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>case 'recent':</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>filteredData.sort((a, b) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>if (!a.lastCalled) return 1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>if (!b.lastCalled) return -1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>return new Date(b.lastCalled) - new Date(a.lastCalled);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>break;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>case 'not-called':</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>filteredData.sort((a, b) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>if (a.callStatus === 'Not Called' &amp;&amp; b.callStatus !== 'Not Called') return -1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>if (a.callStatus !== 'Not Called' &amp;&amp; b.callStatus === 'Not Called') return 1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>return a.name.localeCompare(b.name);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>break;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>currentPage = 1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>renderCallList();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Pagination</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('prev-page').addEventListener('click', function() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (currentPage &gt; 1) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>currentPage--;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>renderCallList();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('next-page').addEventListener('click', function() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if ((currentPage * rowsPerPage) &lt; filteredData.length) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>currentPage++;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>renderCallList();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Stats and reporting</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>function updateCallStats() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const totalContacts = callListData.length;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const callsMade = callListData.filter(c =&gt; c.callStatus === 'Called').length;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const completion = totalContacts &gt; 0 ? Math.round((callsMade / totalContacts) * 100) : 0;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.getElementById('stat-total-contacts').textContent = totalContacts;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.getElementById('stat-calls-made').textContent = callsMade;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.getElementById('stat-completion').textContent = `${completion}%`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>function renderCallHistory() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const historyBody = document.getElementById('call-history-body');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>historyBody.innerHTML = '';</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (callHistory.length === 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>const row = document.createElement('tr');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>row.innerHTML = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;td colspan="3" class="px-6 py-4 text-center text-gray-500"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>No call history yet</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/td&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>historyBody.appendChild(row);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>// Show only the 5 most recent calls</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>const recentHistory = callHistory.slice(0, 5);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                    </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>recentHistory.forEach(entry =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>const row = document.createElement('tr');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>const callDate = new Date(entry.timestamp).toLocaleString('en-US', {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>month: 'short',<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>day: 'numeric',</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>year: 'numeric',</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>hour: 'numeric',</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>minute: '2-digit'</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>row.innerHTML = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;td class="px-6 py-4 whitespace-nowrap"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div class="text-sm font-medium text-gray-900"&gt;${entry.name}&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/td&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>${callDate}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/td&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;td class="px-6 py-4 text-sm text-gray-500"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                                </span>${entry.notes || 'No notes'}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/td&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>`;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">                        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>historyBody.appendChild(row);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Export report</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById('export-report').addEventListener('click', function() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// In a real app, this would generate a CSV or PDF report</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// Here we'll just alert for demo purposes</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>alert('Report would be exported here in a real application.');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// Initial render of call history</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>updateCallStats();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>renderCallHistory();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+</body>
+</html>
